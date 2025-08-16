@@ -29,3 +29,16 @@ Scrapes a given Shopify storefront and returns a **Brand Context** JSON per the 
 	2.	Look for port 8000.
 	3.	Click Open in Browser.
 	4.	Add /static/index.html at the end of the URL to open the frontend.
+
+
+   ## DB setup
+By default, snapshots are stored in SQLite (`data.db`).  
+To use MySQL, set:
+DATABASE_URL=mysql+pymysql://user:pass@host:3306/dbname
+
+## New endpoints
+- POST `/api/brand-context` — same as before (now validated with Pydantic).
+- POST `/api/brand-context/save` — crawls and **persists** a JSON snapshot.  
+  Body: `{"website_url":"https://brand.com"}`
+- GET `/api/snapshots` — lists latest saved snapshots (id, url, timestamp).
+- POST `/api/competitors` — best-effort discovery of 2–3 competitor stores and returns their contexts.
