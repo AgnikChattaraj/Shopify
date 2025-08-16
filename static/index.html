@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shopify Brand Insights</title>
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 16px}
+    input,button{font-size:16px;padding:10px}
+    button{cursor:pointer}
+    pre{background:#111;color:#f2f2f2;padding:16px;border-radius:8px;overflow:auto}
+    .row{display:flex;gap:8px}
+    .row>input{flex:1}
+    small{color:#666}
+  </style>
+</head>
+<body>
+  <h1>Shopify Brand Insights (No Official API)</h1>
+  <div class="row">
+    <input id="url" placeholder="https://memy.co.in" />
+    <button id="go">Fetch</button>
+  </div>
+  <p><small>Example: https://hairoriginals.com or any Shopify storefront.</small></p>
+  <pre id="out">Waiting…</pre>
+
+  <script>
+    const out = document.getElementById('out');
+    document.getElementById('go').onclick = async () => {
+      const website_url = document.getElementById('url').value.trim();
+      out.textContent = 'Fetching…';
+      try {
+        const res = await fetch('/api/brand-context', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ website_url })
+        });
+        const data = await res.json();
+        out.textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        out.textContent = 'Error: ' + e.message;
+      }
+    };
+  </script>
+</body>
+</html>
