@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Shopify Brand Insights (No Official Shopify API)
 
 Scrapes a given Shopify storefront and returns a **Brand Context** JSON per the assignment:
@@ -42,3 +43,7 @@ DATABASE_URL=mysql+pymysql://user:pass@host:3306/dbname
   Body: `{"website_url":"https://brand.com"}`
 - GET `/api/snapshots` — lists latest saved snapshots (id, url, timestamp).
 - POST `/api/competitors` — best-effort discovery of 2–3 competitor stores and returns their contexts.
+=======
+# Shopify
+python based shopify application
+>>>>>>> 6b7feab (Initial commit)
